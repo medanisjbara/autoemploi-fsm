@@ -1,0 +1,6 @@
+__pycache__
+credentials.json
+geckodriver.log
+images
+text_pages
+venv

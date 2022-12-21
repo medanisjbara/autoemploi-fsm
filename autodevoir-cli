@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+from sys import argv
+
+if __name__=='__main__':
+    if len(argv) != 2:
+        print('Usage: '+argv[0]+' [fetch|find]')
+        print('\tfetch:\tgrabs pdf files from FSM website')
+        print('\tfind:\tfinds your class based on your CIN')
+    else:
+        if argv[1] == 'fetch':
+            from extrafetcher import fetch_update
+            fetch_update()
+        elif argv[1] == 'find':
+            from webapp import get_user_output
+            x = get_user_output(input('CIN: '))
+            print(x)
+        else:
+            print('Usage: '+argv[0]+' [fetch|find]')
+            print('\tfetch:\tgrabs pdf files from FSM website')
+            print('\tfind:\tfinds your class based on your CIN')
