@@ -59,7 +59,11 @@ def fetch_update():
       captcha_field = driver.find_element(By.NAME, "anti_bots_text")
     
       ## Get captcha
-      captcha_base64 = driver.find_element(By.CLASS_NAME, "captcha_glinse").get_attribute('src').split(',')[1]
+      try:
+        captcha_base64 = driver.find_element(By.CLASS_NAME, "captcha_glinse").get_attribute('src').split(',')[1]
+      except:
+        continue
+
       captcha_pic = Image.open(io.BytesIO(base64.b64decode(captcha_base64)))
       captcha_text = pytesseract.image_to_string(captcha_pic)[:-1]
     
