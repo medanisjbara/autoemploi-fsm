@@ -10,7 +10,7 @@ If you wish to use this locally or host it yourself. You can clone the repo and 
 ```
 pip install -r requirements.txt
 ```
-Make sure both Mozilla Firefox and [Geckodriver](https://github.com/mozilla/geckodriver/releases/) are installed on your system as they're both needed by selenium.  
+Make sure both Mozilla Firefox and [Geckodriver](https://github.com/mozilla/geckodriver/releases/) are installed on your system and accessible via `PATH` as they're both needed by selenium.  
 
 *Note: If you'd like to help port this to use chromium, pull requests are welcome!*  
 ## Usage
