@@ -40,7 +40,7 @@ def fetch_update():
       os.mkdir(folder)
 
     # Ask for username and password
-    global username, password
+    global username, password, devoir_url
     if not username:
       username = input('Enter extranet\'s username: ')
     if not password:
