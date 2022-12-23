@@ -23,4 +23,10 @@ After that feel free to run the basic web app and test it out
 ```
 gunicorn webapp:app
 ```
+In order to update (say, a new pdf document is released upstream) just re-run the `python autodevoir-cli fetch`
 
+While it's not recommended yet. `autodevoir-cli` is made to be run in a cronjob to frequently check for updates upstream.
+
+**NOTE**: Only works on UNIX and UNIX-like Operating systems. If you would like to try this on windows, use WSL or feel free to edit the code (don't forget to PR).
+
+**Extra**: While this is made for testing purposes. It can be useful to get the filenames that are related from the CLI. (say for an automation script or a custom app you're working on). Run `python autodevoir-cli find` to use the CLI instead of web.
