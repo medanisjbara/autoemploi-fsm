@@ -38,6 +38,8 @@ def main():
 def find():
     if request.method == 'POST':
         cin = request.get_data().decode().split('=')[1]
+        if not cin:
+            return redirect('/')
         user_output = get_user_output(cin)
         if user_output:
           # TODO: Use flask specific syntax to generate html from template
@@ -48,6 +50,7 @@ def find():
 
 @app.route('/images/<image_name>', methods=['GET'])
 def get_image(image_name):
+    image_name = image_name.replace(' ', '%20')
     if request.method == 'GET':
         return send_file(f"./images/{image_name}",mimetype='image/png')
 

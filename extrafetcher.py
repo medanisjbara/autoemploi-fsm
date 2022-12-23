@@ -35,7 +35,7 @@ def fetch_update():
     for folder in ['images', 'text_pages']:
       if os.path.exists(folder):
         for file in os.listdir(folder):
-          os.remove(file)
+          os.remove(folder+'/'+file)
         os.rmdir(folder)
       os.mkdir(folder)
 
