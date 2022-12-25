@@ -1,20 +1,22 @@
 #!/usr/bin/env python
 from sys import argv
 
+def help(n=0):
+    print('Usage: '+argv[0]+' [ fetch <username> <password> [URL] | find <CIN> ]')
+    print('\tfetch:\tgrabs pdf files from FSM website')
+    print('\tfind:\tfinds your class based on your CIN')
+    exit(n)
+
 if __name__=='__main__':
-    if len(argv) != 2:
-        print('Usage: '+argv[0]+' [fetch|find]')
-        print('\tfetch:\tgrabs pdf files from FSM website')
-        print('\tfind:\tfinds your class based on your CIN')
+    if argv[1] == 'fetch':
+        if len(argv) not in (4, 5):
+            help()
+        from extrafetcher import fetch_update
+        url = argv[4] if len(argv) == 5 else "https://fsm.rnu.tn/fra/intranet/news/etu.view/361"
+        fetch_update(argv[2], argv[3], url)
+    elif argv[1] == 'find':
+        from extra_process_utils import get_user_output
+        x = get_user_output(argv[2])
+        print(x)
     else:
-        if argv[1] == 'fetch':
-            from extrafetcher import fetch_update
-            fetch_update()
-        elif argv[1] == 'find':
-            from webapp import get_user_output
-            x = get_user_output(input('CIN: '))
-            print(x)
-        else:
-            print('Usage: '+argv[0]+' [fetch|find]')
-            print('\tfetch:\tgrabs pdf files from FSM website')
-            print('\tfind:\tfinds your class based on your CIN')
+        help()

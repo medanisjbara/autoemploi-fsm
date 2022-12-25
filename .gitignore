@@ -2,5 +2,6 @@ __pycache__
 credentials.json
 geckodriver.log
 images
+local-source.html
 text_pages
 venv
