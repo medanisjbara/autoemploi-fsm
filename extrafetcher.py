@@ -55,15 +55,24 @@ def extranet_login(username, password, driver):
         break
 
 def process_pdf(pdf):
+    """
+    Takes a URL to a pdf file as an argument and loops through every page
+    applying OCR and cropping using prepare_image() as needed
+    """
     image_bytes = requests.get('https://fsm.rnu.tn'+pdf).content
+    # TODO: Save file for future use.
     for i,page in enumerate(convert_from_bytes(image_bytes)):
         print(f'Processing page number {i} in document {pdf}')
+        # TODO: Use appropriate naming
         name = pdf.split('/')[-1]+str(i)
         open('text_pages/'+name+'.txt', 'w').write(pytesseract.image_to_string(page))
         prepare_image(page, name+'.png')
 
 
 def prepare_image(image,name, darkmode=True):
+    """
+    Crops images as needed and saves them with the appropriate name
+    """
     print(f'Cropping {name}...', end='')
     if 'l' in name.lower():
         img_arr =  np.array(image)[20:400 , 1000:1700]
@@ -79,6 +88,9 @@ def prepare_image(image,name, darkmode=True):
     print('Done!\n')
 
 def scrape_source(source, driver):
+    """
+    Takes html suorce and scrapes it for PDF links that match the needed specifications
+    """
     def parse_ul(e):
         for li in e.find_elements(By.XPATH, './*'):
             if li.tag_name != 'li':
