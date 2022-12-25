@@ -87,9 +87,11 @@ def prepare_image(image,name, darkmode=True):
     Image.fromarray(img_arr).save('images/'+name)
     print('Done!\n')
 
-def scrape_source(source, driver):
+def scrape_source(source, driver, last=True):
     """
     Takes html suorce and scrapes it for PDF links that match the needed specifications
+    It uses the selenium driver instead of parsing.
+    `last` indicates whether the result should only consist of the last day.
     """
     def parse_ul(e):
         for li in e.find_elements(By.XPATH, './*'):
@@ -101,15 +103,21 @@ def scrape_source(source, driver):
                 process_pdf(driver.execute_script('return arguments[0].getAttribute("href")', a))
     html_bs64 = base64.b64encode(source.encode('utf-8')).decode()
     driver.get("data:text/html;base64," + html_bs64)
+
     for e in driver.find_elements(By.XPATH, '/html/body/div/div/div/div/span/*'):
         if e.tag_name not in ['ul', 'div']:
             continue
         if e.tag_name == 'ul':
-                parse_ul(e)
+            parse_ul(e)
+            if last:
+                break
+            continue
         for tag in e.find_elements(By.XPATH, './*'):
             if tag.tag_name == 'ul':
                 print("Found nested tags")
                 parse_ul(e)
+                if last:
+                    break
 
 def fetch_update(username, password, target):
     driver = browser_init()
