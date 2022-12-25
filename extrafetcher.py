@@ -120,7 +120,12 @@ def process_pdf(pdf):
 
 def prepare_image(image,name, darkmode=True):
     print(f'Cropping {name}...', end='')
-    img_arr =  np.array(image)[50:310 , 1200:1600]
+    if 'l' in name.lower():
+        img_arr =  np.array(image)[20:400 , 1000:1700]
+    elif 'm' in name.lower():
+        img_arr =  np.array(image)[100:420 , :]
+    else:
+        img_arr =  np.array(image)[20:420 , :]
     if darkmode:
         img_arr = 255 - img_arr
     print('Done!')
