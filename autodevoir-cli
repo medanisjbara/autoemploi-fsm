@@ -2,12 +2,15 @@
 from sys import argv
 
 def help(n=0):
-    print('Usage: '+argv[0]+' [ fetch <username> <password> [URL] | find <CIN> ]')
+    print('Usage: '+argv[0]+' [ [fetch|local] <username> <password> [URL] | find <CIN> ]')
     print('\tfetch:\tgrabs pdf files from FSM website')
+    print('\tlocal:\tgrabs pdf files from a local copy of FSM website')
     print('\tfind:\tfinds your class based on your CIN')
     exit(n)
 
 if __name__=='__main__':
+    if len(argv) < 2:
+        help()
     if argv[1] == 'fetch':
         if len(argv) not in (4, 5):
             help()
@@ -18,5 +21,10 @@ if __name__=='__main__':
         from extra_process_utils import get_user_output
         x = get_user_output(argv[2])
         print(x)
+    elif argv[1] == 'local':
+        if len(argv) > 2:
+            print("All additional arguments", argv[2:], "will be ignored")
+        from extrafetcher import fetch_update
+        fetch_update(local=True)
     else:
         help()

@@ -119,18 +119,23 @@ def scrape_source(source, driver, last=True):
                 if last:
                     break
 
-def fetch_update(username, password, target):
+def fetch_update(username="", password="", target="", local=False):
     driver = browser_init()
-    extranet_login(username, password, driver)
-    driver.get(target)
-    source = driver.page_source
     if not os.path.exists('local-source.html'):
         open('local-source.html','w')
-    elif source == open('local-source.html').read():
-        return
-    open('local-source.html', 'w').write(source)
+    if not local:
+        assert username and password and target
+        extranet_login(username, password, driver)
+        driver.get(target)
+        source = driver.page_source
+        if source == open('local-source.html').read():
+            return
+        open('local-source.html', 'w').write(source)
+    else:
+        source = open('local-source.html').read()
 
     # init directories
+    # TODO: Replace deletion with checks later on
     for folder in ['images', 'text_pages']:
       if os.path.exists(folder):
         for file in os.listdir(folder):
