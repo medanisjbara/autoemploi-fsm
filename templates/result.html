@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>
+  Here is what you are looking for
+</h1>
+{% for i in range(len) %}
+  <img src="/images/{{docs[i]}}">
+{% endfor %}
+{% endblock %}
