@@ -17,7 +17,7 @@ Make sure to install tesseract as it is needed by pytesseract.
 ## Usage
 In order to fetch the latest pdf documents and treat them. Note that this will ask you for your login credentials when you use it for the first time. Which they'll be stored in `credentials.json`
 ```
-python autodevoir-cli fetch
+python autodevoir-cli fetch <username> <password>
 ```
 After that feel free to run the basic web app and test it out
 ```
