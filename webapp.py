@@ -3,11 +3,12 @@ from flask_cors import CORS, cross_origin
 
 import os
 
-def get_cropped_docs(cin):
+def get_cropped_docs(user_input):
     needed_images = []
     text_pages = os.listdir('text_pages') if os.path.exists('text_pages') else []
+    # Basic run to check for existance
     for text_page in text_pages:
-        if cin in open('text_pages/'+text_page).read():
+        if user_input.lower() in open('text_pages/'+text_page).read().lower():
             needed_images.append(text_page[:-3]+'png')
     return needed_images
 
@@ -25,7 +26,7 @@ def find():
         cin = request.get_data().decode().split('=')[1]
         if not cin:
             return redirect('/')
-        needed_images = get_cropped_docs(cin)
+        needed_images = get_cropped_docs(cin.replace('+', ' '))
         if needed_images:
             return render_template('result.html',docs=needed_images, len=len(needed_images)) 
         return render_template('not_found.html')
