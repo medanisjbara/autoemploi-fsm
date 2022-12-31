@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>
+<h1 id="here">
   Here is what you are looking for
 </h1>
 {% for i in range(len) %}
-  <img src="/images/{{docs[i]}}">
+  <img class="res" src="/images/{{docs[i]}}">
 {% endfor %}
+<div class="w3-container">
+  <div class="w3-panel w3-red">
+    <h3>Warning</h3>
+    <p>This project tries to be as accurate as possible! Unfortunately there's always room for mistakes to happen.</p>
+  </div>
+  <p style="text-align: center;"></p>
+</div>  
 {% endblock %}

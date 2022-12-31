@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+    <p>Input your CIN number. In case it did not work. You might need to input your first name and/or your last name instead.</p>
   <form method="POST" action="/find">
-    <input name="input" id="input" type="text">
-    <input type="submit">
+    <input name="input" class="js-userinput container-textinput" id="input" type="text">
+    <input type="hidden">
   </form>
 {% endblock %}

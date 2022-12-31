@@ -28,7 +28,7 @@ def find():
         needed_images = get_cropped_docs(cin)
         if needed_images:
             return render_template('result.html',docs=needed_images, len=len(needed_images)) 
-        return 'No results from your querry, please try again', {"Refresh": "1; url=/"}
+        return render_template('not_found.html')
     return redirect ('/')
 
 

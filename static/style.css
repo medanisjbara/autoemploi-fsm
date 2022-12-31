@@ -1,16 +1,54 @@
 body {
   background-color: black; 
+  color: white;
 }
 
-h1 {
-  color: white;
+#here {
   text-align: center;
   font-size: 5em;
 }
 
-img {
+.res {
   width:40%;
   display: block;
   margin-left: auto;
   margin-right: auto; 
 }
+
+input {
+  color: #f00;
+}
+#input {
+  align: center;
+}
+
+p {
+  text-indent: 50px;
+  text-align: justify;
+  letter-spacing: 3px;
+}
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #4CAF50;
+}
+
+div {
+  border: 1px solid gray;
+  padding: 8px;
+}
+
+.container-textinput {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 80%;
+  padding: 20px;
+  font-size: 16px;
+  font-family: Helvetica, sans-serif;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
