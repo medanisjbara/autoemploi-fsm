@@ -19,8 +19,8 @@ if __name__=='__main__':
         fetch_update(argv[2], argv[3], url)
     elif argv[1] == 'find':
         from extra_process_utils import get_user_output
-        x = get_user_output(argv[2])
-        print(x)
+        for x in get_cropped_docs(argv[2]):
+            print(x)
     elif argv[1] == 'local':
         if len(argv) > 2:
             print("All additional arguments", argv[2:], "will be ignored")
