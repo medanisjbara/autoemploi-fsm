@@ -1,10 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-    <p>Input your CIN number. In case it did not work. You might need to input your first name and/or your last name instead.</p>
-    <p>If you are writing a name, make sure to write your family name before your name.</p>
-    <p>Good luck with your exams :)</p>
-  <form method="POST" action="/find">
-    <input name="input" class="js-userinput container-textinput" id="input" type="text">
-    <input type="hidden">
+<div class="content">
+  <rayenui></rayenui>
+  <form method="GET" target="index.html" class="form">
+      <input name="input" class="input-text" type="text" placeholder="NAME / CIN">
+      <input class="button-submit" type="submit" value="Find">
+      <input type="hidden">
+
   </form>
+  <ul class="previously">
+
+  </ul>
+
+  <div class="disclaimer">
+      <h2>Important note : </h2>
+      <p>This website tries to be as accurate as possible although there still a room for mistakes , with that in
+          mind the website authors are not responsible for any issues that might be caused by this tool and if you
+          blame them for any consequences they will laugh at you. </p>
+  </div>
+  <hr>
+  <div class="footer">
+      <div class="support-dev-footer">
+          <span>Support the developer on </span>
+          <a title="GitHub repo" href="https://github.com/medanisjbara/autoemploi-fsm"><img class="git-link"
+                  src="misc/github.svg" alt="GitHub repo"></a>
+      </div>
+  </div>
+</div>
+<div class="credit">
+  <span>🥤Frontend by <span><a href="http://rebrand.ly/rayenzaafouri">Zaafouri M.Rayen</a></span>
+</div>
 {% endblock %}

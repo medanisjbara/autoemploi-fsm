@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 id="here">
-  Here is what you are looking for
-</h1>
-{% for i in range(len) %}
-  <img class="res" src="/images/{{docs[i]}}">
-{% endfor %}
-<div class="w3-container">
-  <div class="w3-panel w3-red">
-    <h3>Warning</h3>
-    <p>This project tries to be as accurate as possible! Unfortunately there's always room for mistakes to happen.</p>
+<div class="content">
+  <div class="found">
+      <h2>We found the following results for you : 🔎</h2>
+      <div class="found-imgs-container">
+        {% for i in range(len) %}
+        <img class="result-img" src="/images/{{docs[i]}}">
+        {% endfor %}
+      </div>
+      <div class="support-devs-container">
+          <p>Please consider giving us github stars <a href="https://github.com/medanisjbara/autoemploi-fsm">here</a> to support the project creator.👨‍💻<th></th></p>
+          <p>Good luck in your next exam ! 👋</p>
+      </div>
   </div>
-  <p style="text-align: center;"></p>
-</div>  
+  </div>
+</div>
 {% endblock %}
