@@ -274,6 +274,7 @@ form{
     margin: 0;
     margin-bottom: .2rem;
     color: black;
+    align-self: flex-start;
 }
 
 
