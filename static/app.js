@@ -28,7 +28,7 @@ window.addEventListener("load", (event) => {
         });
         document.getElementsByClassName("previously")[0].append(li);
     }
-    //Search form submission event interception to cache the search result.
+    //Search form submission event interception to cache the search query.
     let search_form = document.getElementsByTagName("form")[0];
     search_form.addEventListener("submit",(event) =>{
 

@@ -45,7 +45,6 @@ body{
     justify-content: center;
     background-color: #090979;
     color: white;
-    padding: 2rem;
     padding-bottom: 3rem;
     box-sizing: content-box;
 }
@@ -55,6 +54,7 @@ body{
 }
 .hero > p{
     text-align: center  ;    
+    padding: .1rem;
 }
 .hero>*{
     padding: 0;
@@ -300,10 +300,11 @@ hr{
     width: 75%;
 }
 .credit{
-    position: absolute;
+    position: fixed;
     bottom: 1%;
 }
 .credit > span > * {
     all: unset;
     font-family: 'Pacifico'!important;
 }
+
