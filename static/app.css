@@ -5,6 +5,7 @@ html{
     font-size: 1rem;
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 *{
     padding: 0;
