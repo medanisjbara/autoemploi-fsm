@@ -82,4 +82,5 @@ function addHistoryItem(item){
     localStorage.setItem("request_history",JSON.stringify(aux));
 }
 
+console.log("Locked and loaded.");
 
