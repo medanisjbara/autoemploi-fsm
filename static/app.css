@@ -10,6 +10,18 @@ html{
     padding: 0;
     box-sizing: border-box;
 }
+
+*:link { text-decoration: none; }
+
+
+*:visited { text-decoration: none; }
+
+
+*:hover { text-decoration: none; }
+
+
+*:active { text-decoration: none; }
+
 p,span,h1,h2,h3,h4,h5{
     font-family: 'Lato';
 }
@@ -35,6 +47,10 @@ body{
     padding: 2rem;
     padding-bottom: 3rem;
     box-sizing: content-box;
+}
+.hero > a > h1{
+    color: white!important;
+    text-decoration: none!important;
 }
 .hero > p{
     text-align: center  ;    
