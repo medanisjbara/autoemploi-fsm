@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>No results from your querry, please try again</h1>
-<p>Things you can do might include</p>
-<ol>
-  <li><a href="/">Retry again</a> with your firstname and/or last name</li>
-  <li>Open a new <a href="https://github.com/medanisjbara/autoemploi-fsm/issues/new">issue on github</a></li>
-  <li>Contact the creator of this page (Anis Jbara LGLSI2)</li>
-  <li>Check upstream manually <a href"https://fsm.rnu.tn/extranet">FSM-Extranet space</a></li>
+<div class="content">
+  <div class="not-found">
+      <h2>Oh no!</h2>
+      <p class="mid-msg">
+          No results were found based on the data your provided.
+      </p>
+      <p class="mid-msg">
+          You can still try the following options :
+      </p>
+      <p class="last-msg">
+          1- Double check your search query and <a href="/">retry again</a>.<br>
+          2- Open a new <a href="https://github.com/medanisjbara/autoemploi-fsm/issues/new" target="_blank">issue on github.</a><br>
+          3- Contact the creator of this tool (Anis Jbara LGLSI2).<br>
+          4- Check upstream manually at <a href="https://fsm.rnu.tn/extranet" target="_blank">FSM-Extranet space.</a>
+      </p>
+  </div>
+</div>
 {% endblock %}
