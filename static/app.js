@@ -114,5 +114,4 @@ document.addEventListener("load", (event)=>{
 
 
 
-console.log("Frontend modules should perform as intended!");
-
+console.log("Frontend modules should perform as intended.");
