@@ -33,9 +33,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    
 }
-
 .hero{
     width: 100vw;
     height: 10rem;
@@ -70,9 +68,7 @@ body{
     justify-content: center;
     flex-direction: column;
     padding: 1rem;
-    max-width: 55rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-
 }
 
 .content>p{
@@ -174,14 +170,6 @@ form{
 .previously > li > button::after{
     content: "x";
 }
-.not-found{
-    
-}
-
-.not-found > ol {
-
-}
-
 .not-found > ol > li{
     font-family: 'Lato';
 }
@@ -229,11 +217,13 @@ form{
     border-bottom-left-radius: 1rem;
 }
 
+.found {
+    max-width: 85vw;
+}
 .found > h2{
     background-color: #27ae60;
     border-radius: 1rem;
     border-bottom-left-radius: 0px;
-    width: max-content;
     padding: .5rem;
     color: white;
     margin: 0;
@@ -269,7 +259,6 @@ form{
     border-radius: 1rem;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    width: max-content;
     padding: .5rem;
     color: white;
     margin: 0;
@@ -307,4 +296,3 @@ hr{
     all: unset;
     font-family: 'Pacifico'!important;
 }
-

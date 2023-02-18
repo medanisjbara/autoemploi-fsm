@@ -1,9 +1,8 @@
 /*
     Frontend runtime scripts for Autodevoir@FSM
     Author : Zaafouri Mohamed Rayen
-    Please do not redistribute !!
+    E-mail : mohamedrayenzaafouri@gmail.com
 */
-
 
 //Post-loading events.
 window.addEventListener("load", (event) => {
@@ -81,6 +80,5 @@ function addHistoryItem(item){
  
     localStorage.setItem("request_history",JSON.stringify(aux));
 }
-
-console.log("Locked and loaded.");
+console.log("Frontend modules performed correctly.");
 
