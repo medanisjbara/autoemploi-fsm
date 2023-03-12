@@ -101,11 +101,12 @@ function display_image_fs(url){
         );
 }
 
-document.addEventListener("load", (event)=>{
+window.addEventListener("load", (event)=>{
     let image_elements = document.getElementsByClassName("result-img");
     for (let i=0;i<image_elements.length;i++){
         image_elements[i].addEventListener("click",(event)=>{
                 display_image_fs(image_elements[i].getAttribute("src"));
+                console.log("pinned!")
         });
     }
 });

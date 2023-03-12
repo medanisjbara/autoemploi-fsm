@@ -75,6 +75,7 @@ body{
     flex-direction: column;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    max-width: 30rem;
 }
 
 .content>p{
@@ -133,7 +134,6 @@ form{
     padding-right: 4rem;
     height: 3rem;
     width: 75%;
-    max-width: 30rem;
     
 }
 
