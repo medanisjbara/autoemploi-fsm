@@ -50,6 +50,7 @@ body{
     color: white;
     padding-bottom: 3rem;
     box-sizing: content-box;
+    max-width: 50rem;
 }
 .hero > a > h1{
     color: white!important;
