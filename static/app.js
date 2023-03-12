@@ -1,9 +1,8 @@
 /*
     Frontend runtime scripts for Autodevoir@FSM
     Author : Zaafouri Mohamed Rayen
-    Please do not redistribute !!
+    E-mail : mohamedrayenzaafouri@gmail.com
 */
-
 
 //Post-loading events.
 window.addEventListener("load", (event) => {
@@ -82,5 +81,36 @@ function addHistoryItem(item){
     localStorage.setItem("request_history",JSON.stringify(aux));
 }
 
-console.log("Locked and loaded.");
+//Picture full screen feature.
 
+function display_image_fs(url){
+    let image_container = document.createElement("div");
+    image_container.setAttribute("class","fs-image-preview");
+    let image = document.createElement("img");
+    image.setAttribute("src",url);
+    image.addEventListener("click",(event)=>{
+        //preventing the image click event to reach its container and fire the closing event
+        event.stopPropagation();
+    })
+    image_container.appendChild(image);    
+    document.body.appendChild(image_container);
+
+    image_container.addEventListener("click",(event)=>{
+        image_container.remove();
+    }
+        );
+}
+
+window.addEventListener("load", (event)=>{
+    let image_elements = document.getElementsByClassName("result-img");
+    for (let i=0;i<image_elements.length;i++){
+        image_elements[i].addEventListener("click",(event)=>{
+                display_image_fs(image_elements[i].getAttribute("src"));
+                console.log("pinned!")
+        });
+    }
+});
+
+
+
+console.log("Frontend modules should perform as intended.");

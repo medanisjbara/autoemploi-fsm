@@ -69,7 +69,7 @@ def process_pdf(pdf):
         prepare_image(page, name+'.png')
 
 
-def prepare_image(image,name, darkmode=True):
+def prepare_image(image,name, darkmode=False):
     """
     Crops images as needed and saves them with the appropriate name
     """
