@@ -4,6 +4,39 @@ A small personal project to automate the search for your class in the exams week
 
 ## How it works
 This codes automates logging into [FSM Extranet space](https://fsm.rnu.tn//extranet) using your credentials (and ORC on their weak captcha) and retrieves the pdf documents for the time and location of latest day's exams. It then applies OCR on every page of the documents and automates the search for the class you are searching for.
+```mermaid
+sequenceDiagram
+    participant Cronjob
+    participant Extrafetcher
+    participant Extranet
+    participant Refiner
+    participant OCR
+    participant Database
+    participant ImagesFolder
+
+    participant Webapp
+    participant User
+
+    loop for every 30 mins
+        Cronjob->>+Extrafetcher: Execute every 30 mins
+        Extrafetcher->>+Extranet: Scrape PDF files
+        Extranet->>-Extrafetcher: PDF files
+        loop for each PDF file
+            Extrafetcher->>+Refiner: PDF file
+            loop for each Page
+                Refiner->>+OCR: Feed image to OCR
+                OCR->>+Database: Save OCR result
+                Refiner->>+ImagesFolder: Save cropped image
+            end
+        end
+    end
+
+    User->>+Webapp: User input their name
+    Webapp->>+Database: Find image associated to user 
+    Webapp->>+ImagesFolder: Get the image
+    Webapp->>+User: Show Salle
+
+```
 ## Installation
 If you wish to use this locally or host it yourself. You can clone the repo and then install the pip requirements by issuing the following command.
 *Note: It is advised you use a python virtual environment for this.*  
@@ -30,3 +63,4 @@ While it's not recommended yet. `autodevoir-cli` is made to be run in a cronjob 
 **NOTE**: Only works on UNIX and UNIX-like Operating systems. If you would like to try this on windows, use WSL or feel free to edit the code (don't forget to PR).
 
 **Extra**: While this is made for testing purposes. It can be useful to get the filenames that are related from the CLI. (say for an automation script or a custom app you're working on). Run `python autodevoir-cli find` to use the CLI instead of web.
+
