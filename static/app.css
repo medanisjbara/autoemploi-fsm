@@ -176,6 +176,10 @@ form{
 .previously > li > button::after{
     content: "x";
 }
+
+.not-found {
+    max-width: 85vw;
+}
 .not-found > ol > li{
     font-family: 'Lato';
 }
@@ -213,6 +217,7 @@ form{
 .mid-msg {
     border-top-left-radius: 0px!important;
     border-bottom-left-radius: 0px!important;
+    max-width: 85vw;
 }
 
 .not-found > p > a {
@@ -221,6 +226,7 @@ form{
 
 .last-msg {
     border-bottom-left-radius: 1rem;
+    max-width: 85vw;
 }
 
 .found {
