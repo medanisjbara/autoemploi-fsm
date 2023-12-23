@@ -1,30 +1,42 @@
 #!/usr/bin/env python
 from sys import argv
+from fetch_utils import get_cropped_docs
+
 
 def help(n=0):
-    print('Usage: '+argv[0]+' [ [fetch|local] <username> <password> [URL] | find <CIN> ]')
-    print('\tfetch:\tgrabs pdf files from FSM website')
-    print('\tlocal:\tgrabs pdf files from a local copy of FSM website')
-    print('\tfind:\tfinds your class based on your CIN')
+    print(
+        "Usage: "
+        + argv[0]
+        + " [ [fetch|local] <username> <password> [URL] | find <CIN> ]"
+    )
+    print("\tfetch:\tgrabs pdf files from FSM website")
+    print("\tlocal:\tgrabs pdf files from a local copy of FSM website")
+    print("\tfind:\tfinds your class based on your CIN")
     exit(n)
 
-if __name__=='__main__':
+
+if __name__ == "__main__":
     if len(argv) < 2:
         help()
-    if argv[1] == 'fetch':
+    if argv[1] == "fetch":
         if len(argv) not in (4, 5):
             help()
         from extrafetcher import fetch_update
-        url = argv[4] if len(argv) == 5 else "https://fsm.rnu.tn/fra/intranet/news/etu.view/361"
+
+        url = (
+            argv[4]
+            if len(argv) == 5
+            else "https://fsm.rnu.tn/fra/intranet/news/etu.view/361"
+        )
         fetch_update(argv[2], argv[3], url)
-    elif argv[1] == 'find':
-        from extra_process_utils import get_user_output
+    elif argv[1] == "find":
         for x in get_cropped_docs(argv[2]):
             print(x)
-    elif argv[1] == 'local':
+    elif argv[1] == "local":
         if len(argv) > 2:
             print("All additional arguments", argv[2:], "will be ignored")
         from extrafetcher import fetch_update
+
         fetch_update(local=True)
     else:
         help()
