@@ -1,6 +1,7 @@
 import base64
 import io
 import os
+import re
 
 import numpy as np
 import pytesseract
@@ -9,6 +10,9 @@ from pdf2image import convert_from_bytes
 from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
+
+url_pattern = r'/useruploads/files/[^"]+\.pdf'
 
 
 def browser_init(headless=True):
@@ -61,17 +65,17 @@ def extranet_login(username, password, driver):
             break
 
 
-def process_pdf(pdf):
+def process_pdf(pdf_link):
     """
     Takes a URL to a pdf file as an argument and loops through every page
     applying OCR and cropping using prepare_image() as needed
     """
-    image_bytes = requests.get("https://fsm.rnu.tn" + pdf).content
+    image_bytes = requests.get(pdf_link).content
     # TODO: Save file for future use.
     for i, page in enumerate(convert_from_bytes(image_bytes)):
-        print(f"Processing page number {i} in document {pdf}")
+        print(f"Processing page number {i} in document {pdf_link}")
         # TODO: Use appropriate naming
-        name = pdf.split("/")[-1] + str(i)
+        name = pdf_link.split("/")[-1] + str(i)
         open("text_pages/" + name + ".txt", "w").write(
             pytesseract.image_to_string(page)
         )
@@ -97,41 +101,19 @@ def prepare_image(image, name, darkmode=False):
     print("Done!\n")
 
 
-def scrape_source(source, driver, last=True):
+def scrape_source(source, last=False):
     """
     Takes html suorce and scrapes it for PDF links that match the needed specifications
-    It uses the selenium driver instead of parsing.
     `last` indicates whether the result should only consist of the last day.
     """
+    # First PDF in the page is to be ignored
+    # (Not an exam related pdf)
+    matches = re.findall(url_pattern, source)[1:]
 
-    def parse_ul(e):
-        for li in e.find_elements(By.XPATH, "./*"):
-            if li.tag_name != "li":
-                print(li.tag_name, "found where it shouldn't be")
-                print("Manual intervention is needed")
-                continue
-            for a in li.find_elements(By.XPATH, "./*"):
-                process_pdf(
-                    driver.execute_script('return arguments[0].getAttribute("href")', a)
-                )
-
-    html_bs64 = base64.b64encode(source.encode("utf-8")).decode()
-    driver.get("data:text/html;base64," + html_bs64)
-
-    for e in driver.find_elements(By.XPATH, "/html/body/div/div/div/div/span/*"):
-        if e.tag_name not in ["ul", "div"]:
-            continue
-        if e.tag_name == "ul":
-            parse_ul(e)
-            if last:
-                break
-            continue
-        for tag in e.find_elements(By.XPATH, "./*"):
-            if tag.tag_name == "ul":
-                print("Found nested tags")
-                parse_ul(e)
-                if last:
-                    break
+    for match in matches:
+        process_pdf("https://fsm.rnu.tn/" + match)
+        if last:
+            break
 
 
 def fetch_update(username="", password="", target="", local=False):
@@ -140,9 +122,13 @@ def fetch_update(username="", password="", target="", local=False):
         open("local-source.html", "w")
     if not local:
         assert username and password and target
+        # TODO 1: Use same session when possible
+        # TODO 2: Make optional (in case files are accessible from extranet)
         extranet_login(username, password, driver)
         driver.get(target)
-        source = driver.page_source
+        source = "\n".join(
+            driver.page_source.splitlines()[:-1]
+        )  # Last line always changes
         if source == open("local-source.html").read():
             return
         open("local-source.html", "w").write(source)
@@ -158,4 +144,4 @@ def fetch_update(username="", password="", target="", local=False):
             os.rmdir(folder)
         os.mkdir(folder)
 
-    scrape_source(source, driver)
+    scrape_source(source)
