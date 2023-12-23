@@ -64,3 +64,19 @@ While it's not recommended yet. `autodevoir-cli` is made to be run in a cronjob 
 
 **Extra**: While this is made for testing purposes. It can be useful to get the filenames that are related from the CLI. (say for an automation script or a custom app you're working on). Run `python autodevoir-cli find` to use the CLI instead of web.
 
+## API
+An API is implemented in case you want to use this in whatever you'd like. Just make a `POST` request to `https://jbara.xyz/api` with the following content.
+```json
+{
+    "ident": "your name"
+}
+```
+And you will get a response as an array of images corresponding to your search result as follows.
+```json
+{
+  "result": [
+    "https://fsm.jbara.xyz/images/161223-l3-9h.png",
+    "https://fsm.jbara.xyz/images/151223-l3-15h30.png"
+  ]
+}
+```
